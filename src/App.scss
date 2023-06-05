@@ -1,3 +1,60 @@
-.main {
-  background-color: aqua;
+.form__container {
+  height: 1000px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.header {
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    background-color: #301f74;
+  }
+
+  &__logo {
+    margin-left: 50px;
+  }
+
+  &__img{
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease-in-out;
+    &:hover {
+      transform: scale(1.25);
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+  }
+
+  &__user {
+    margin-right: 15px;
+    & img {
+      width: 30px;
+      height: 30px;
+    }
+  }
+  &__btn {
+    margin-right: 50px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    transition: color 0.3s ease-in-out;
+
+    &:hover {
+      color: red;
+    }
+
+    &.disabled {
+      color: gray;
+    }
+  }
+  &__text {
+    color: white;
+  }
+}
+

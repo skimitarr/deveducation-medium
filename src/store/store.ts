@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 
 import createSagaMiddleware from 'redux-saga'
-import { roomSaga } from './sagas'
+import { roomSaga, addDataUserSaga, deleteDataUserSaga } from './sagas'
 
 import someReducer from './SomeSlice'
 
@@ -15,6 +15,8 @@ const store = configureStore({
 });
 
 saga.run(roomSaga)
+saga.run(addDataUserSaga)
+saga.run(deleteDataUserSaga)
 
 export default store;
 

@@ -1,11 +1,15 @@
 import './App.css';
-import { Card, Col, Row } from 'antd';
+import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
 import { Dispatch } from '@reduxjs/toolkit';
 
 import { IRoom, IAccount, IRoomFromStore } from './components/Interfaces';
-import { getRoomsFetch } from './store/SomeSlice'
+import { getRoomsFetch } from './store/SomeSlice';
+import Header from "./components/Header";
+import LogInAccount from "./pages/LogInAccount";
+import MainLayout from "./pages/MainLayout";
+import NotFound from "./pages/NotFound";
 
 function App() {
   const [accounts, setAccounts] = useState<{[key: string]: IAccount}>({});
@@ -33,38 +37,15 @@ function App() {
     return <div>Loading...</div>;
   }
 
-  const arrOFAccounts = Object.values(accounts)
-  // const arrOFAccounts: IAccount[] = Object.values(accounts)
-  // console.log(arrOFAccounts)
-
-
   return (
-    <main className="main text-center">
-      <div className="row">
-        <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-          {rooms.map((item: IRoom) => {
-            return (
-             <Col className="gutter-row" span={8} key={item.id}>
-              <div>
-                <Card bordered={false} style={{ width: 300 }} className='myCard'>
-                  {/* <img src={item.gallery[0]} alt={item.title} /> */}
-                  <h2>{item.number}</h2>
-                </Card>
-              </div>
-            </Col>
-          ) }
-          )}
-        </Row>
-      </div>
-      {arrOFAccounts.map((item: any) => {
-        return (
-          <div key={item.password}>
-            <img src={item.image} alt={item.image} />
-            <h2>{item.password}</h2>
-          </div>
-        ) }
-      )}
-    </main>
+    <Routes>
+      <Route index element={<LogInAccount accounts={accounts}/>} />
+      <Route path="/" element={<Header accounts={accounts}/>}>
+        <Route path="/main" element={<MainLayout rooms={rooms}/>} />
+        {/* <Route path="/articles/:title" element={<DetailPage rooms={rooms}/>} /> */}
+        <Route path="*" element={<NotFound />} />
+      </Route>
+    </Routes>
   )
 }
 export default App;

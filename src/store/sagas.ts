@@ -1,4 +1,5 @@
-import { call, put, takeLatest } from 'redux-saga/effects'
+import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
+import { PayloadAction } from '@reduxjs/toolkit';
 
 import { db } from '../firebase'
 import  {
@@ -17,7 +18,7 @@ async function watchRooms() {
     const unsubscribe = onSnapshot(queryCollection, (data) => {
       data.forEach((i) => {
         item = {...i.data()};
-        console.log(item);
+        // console.log(item);
       });
       resolve();
     });
@@ -34,5 +35,21 @@ function* workGetRooms() {
 
 export function* roomSaga() {
   yield takeLatest('accounts&rooms/getRoomsFetch', workGetRooms)
+}
+
+function* workAddDataUser(action: PayloadAction<{ username: string, password: string }>) {
+  yield localStorage.setItem('user', JSON.stringify(action.payload));
+}
+
+export function* addDataUserSaga() {
+  yield takeEvery('accounts&rooms/userLocalSaveData', workAddDataUser)
+}
+
+function* workDeleteDataUser() {
+  yield localStorage.clear();
+}
+
+export function* deleteDataUserSaga() {
+  yield takeEvery('accounts&rooms/userLocalDeleteData', workDeleteDataUser)
 }
 

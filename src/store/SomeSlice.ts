@@ -7,6 +7,7 @@ const someSlice = createSlice({
     allAccounts: {},
     allRooms: [],
     isLoading: false,
+    userData: { username: '', password: '' }
   } as ISomeSliceState,
   reducers: {
     getAccountsFetch(state) {
@@ -23,9 +24,23 @@ const someSlice = createSlice({
       state.isLoading = false
       state.allRooms = action.payload;
     },
+    userLocalSaveData(state, action: PayloadAction<{ username: string, password: string }>) {
+      state.isLoading = true
+      state.userData = action.payload;
+    },
+    userLocalDeleteData(state) {
+      state.isLoading = true
+    }
   }
 })
 
-export const { getAccountsFetch, getAccounts, getRoomsFetch, getRooms } = someSlice.actions;
+export const {
+  getAccountsFetch,
+  getAccounts,
+  getRoomsFetch,
+  getRooms,
+  userLocalSaveData,
+  userLocalDeleteData
+} = someSlice.actions;
 export default someSlice.reducer;
 

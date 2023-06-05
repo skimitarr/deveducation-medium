@@ -16,6 +16,8 @@ export type IAccount = {
   password: string;
 }
 
+type IAccounts = Record<string, IAccount>;
+
 export type IRoom = {
   checkInDate: string;
   description: string;
@@ -31,7 +33,23 @@ export type IRoom = {
 };
 
 export type ISomeSliceState = {
-  allAccounts: Record<string, IAccount>;
+  allAccounts: IAccounts;
   allRooms: IRoom[];
   isLoading: boolean;
+  userData: { username: string; password: string };
 }
+
+export type IPropRooms = {
+  rooms: IRoom[]
+}
+
+export type IPropAccounts = {
+  accounts: IAccounts
+}
+
+export type IFormValues = {
+  username: string;
+  password: string;
+  remember: boolean;
+}
+
