@@ -1,20 +1,20 @@
-export type IRoomFromStore = {
+export type IStateFromStore = {
   some: {
     allAccounts: Record<string, IAccount>;
     allRooms: IRoom[];
-    isLoading: boolean;
+    // isUser: boolean;
   };
 };
 
 export type IItem = {
   Accounts: IAccount;
   Rooms: IRoom[];
-}
+};
 
 export type IAccount = {
   image: string;
   password: string;
-}
+};
 
 type IAccounts = Record<string, IAccount>;
 
@@ -35,21 +35,35 @@ export type IRoom = {
 export type ISomeSliceState = {
   allAccounts: IAccounts;
   allRooms: IRoom[];
-  isLoading: boolean;
-  userData: { username: string; password: string };
-}
+  // userData: { username: string; password: string };
+  // isUser: boolean;
+};
 
-export type IPropRooms = {
-  rooms: IRoom[]
-}
+// export type IPropRooms = {
+//   rooms: IRoom[];
+// };
 
-export type IPropAccounts = {
-  accounts: IAccounts
-}
+// export type IPropAccounts = {
+//   accounts: IAccounts;
+// };
 
 export type IFormValues = {
   username: string;
   password: string;
   remember: boolean;
-}
+};
 
+export type TableColoumns = {
+  key: string;
+  number: number;
+  type: string;
+  occupancy: number;
+  price: number;
+  guest: string;
+  link: string;
+};
+
+export type FilterTable = {
+  text: string | number;
+  value: string | number;
+};

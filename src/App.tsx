@@ -1,52 +1,47 @@
 import './App.css';
-import { Routes, Route } from "react-router-dom";
-import { useState, useEffect } from 'react';
+import { Routes, Route, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Dispatch } from '@reduxjs/toolkit';
 
-import { IRoom, IAccount, IRoomFromStore } from './components/Interfaces';
-import { getRoomsFetch } from './store/SomeSlice';
-import Header from "./components/Header";
-import LogInAccount from "./pages/LogInAccount";
-import MainLayout from "./pages/MainLayout";
-import NotFound from "./pages/NotFound";
+import { IStateFromStore } from './components/Interfaces';
+import { getRoomsAction } from './store/sagas';
+import Header from './components/Header';
+import LogInAccount from './pages/LogInAccount';
+import MainLayout from './pages/MainLayout';
+import SingleRoom from './pages/SingleRoom';
+import NotFound from './pages/NotFound';
 
 function App() {
-  const [accounts, setAccounts] = useState<{[key: string]: IAccount}>({});
-  const [rooms, setRooms] = useState<IRoom[]>([]);
+  const navigate = useNavigate();
   const dispatch = useDispatch<Dispatch<any>>();
-  const showingRoomsFromStore = useSelector((state: IRoomFromStore) => state.some.allRooms);
-  const showingAccountsFromStore = useSelector((state: IRoomFromStore) => state.some.allAccounts);
+  const roomsFromStore = useSelector((state: IStateFromStore) => state.some.allRooms);
 
   useEffect(() => {
-    if (showingRoomsFromStore.length === 0) {
-      dispatch(getRoomsFetch())
+    if (!localStorage.user && !sessionStorage.user) {
+      navigate('/login');
     }
-  }, [dispatch, showingRoomsFromStore]);
+  }, []);
 
   useEffect(() => {
-    if (showingRoomsFromStore.length > 0) {
-      setRooms(showingRoomsFromStore);
+    if (roomsFromStore.length === 0) {
+      dispatch(getRoomsAction());
     }
-    if (showingAccountsFromStore) {
-      setAccounts(showingAccountsFromStore);
-    }
-  }, [showingRoomsFromStore]);
+  }, [dispatch, roomsFromStore]);
 
-  if (showingRoomsFromStore.length === 0) {
+  if (roomsFromStore.length === 0) {
     return <div>Loading...</div>;
   }
 
   return (
     <Routes>
-      <Route index element={<LogInAccount accounts={accounts}/>} />
-      <Route path="/" element={<Header accounts={accounts}/>}>
-        <Route path="/main" element={<MainLayout rooms={rooms}/>} />
-        {/* <Route path="/articles/:title" element={<DetailPage rooms={rooms}/>} /> */}
-        <Route path="*" element={<NotFound />} />
+      <Route path='/login' element={<LogInAccount />} />
+      <Route path='/' element={<Header />}>
+        <Route path='/rooms' element={<MainLayout />} />
+        <Route path='/rooms/:roomId' element={<SingleRoom />} />
+        <Route path='*' element={<NotFound />} />
       </Route>
     </Routes>
-  )
+  );
 }
 export default App;
-

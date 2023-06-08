@@ -1,3 +1,14 @@
+@import 'reset.css';
+#id {
+  max-width: 1920px;
+  height: 1080px;
+  margin: 0 auto;
+}
+
+.flex {
+  display: flex;
+}
+
 .form__container {
   height: 1000px;
   display: flex;
@@ -13,7 +24,7 @@
   background-color: #301f74;
 }
 .header__logo {
-  margin-left: 50px;
+  margin-left: 75px;
 }
 .header__img {
   width: 30px;
@@ -34,7 +45,7 @@
   height: 30px;
 }
 .header__btn {
-  margin-right: 50px;
+  margin-right: 75px;
   background-color: transparent;
   border: none;
   color: white;
@@ -48,4 +59,66 @@
 }
 .header__text {
   color: white;
+}
+
+.main__container {
+  margin: 0 75px;
+}
+
+.grid__container {
+  display: grid;
+  grid-template-columns: 50% 25% 25%;
+  margin-bottom: 40px;
+}
+
+.link__home {
+  margin: 8px 0;
+}
+
+.room__data-container {
+  margin-left: 25px;
+}
+
+.room__title {
+  margin-bottom: 16px;
+  font-size: 32px;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.room__text {
+  margin-bottom: 16px;
+  font-size: 18px;
+}
+
+.bold-text {
+  font-weight: bold;
+}
+
+.room__btn-wrapper {
+  margin-bottom: 16px;
+}
+
+.room__btn-wrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-checkin {
+  margin-right: 25px;
+}
+
+.room__subtitle {
+  margin-bottom: 16px;
+  font-size: 20px;
+}
+
+.room__description {
+  margin-right: 10px;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.mr-10 {
+  margin-right: 10px;
 }/*# sourceMappingURL=App.css.map */

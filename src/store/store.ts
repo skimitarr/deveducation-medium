@@ -1,22 +1,19 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit';
 
-import createSagaMiddleware from 'redux-saga'
-import { roomSaga, addDataUserSaga, deleteDataUserSaga } from './sagas'
+import createSagaMiddleware from 'redux-saga';
+import { roomSaga } from './sagas';
 
-import someReducer from './SomeSlice'
+import someReducer from './SomeSlice';
 
-const saga = createSagaMiddleware()
+const saga = createSagaMiddleware();
 
 const store = configureStore({
   reducer: {
     some: someReducer,
   },
-  middleware: [saga]
+  middleware: [saga],
 });
 
-saga.run(roomSaga)
-saga.run(addDataUserSaga)
-saga.run(deleteDataUserSaga)
+saga.run(roomSaga);
 
 export default store;
-
