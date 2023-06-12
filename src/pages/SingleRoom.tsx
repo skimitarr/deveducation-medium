@@ -3,13 +3,15 @@ import { useSelector } from 'react-redux';
 import { Button, Carousel } from 'antd';
 
 import { IStateFromStore } from '../components/Interfaces';
+import { CheckInBtn } from '../components/CheckInBtn';
+import { CheckOutBtn } from '../components/CheckOutBtn';
 
 const SingleRoom = () => {
   const { roomId } = useParams();
   const navigate = useNavigate();
-  const roomsFromStore = useSelector((state: IStateFromStore) => state.some.allRooms);
+  const roomsFromStore = useSelector((state: IStateFromStore) => state.accountsRooms.allRooms);
+  console.log(roomsFromStore);
   const room = roomsFromStore.find((item) => item.id === roomId);
-  console.log(room);
 
   return (
     <main>
@@ -46,12 +48,16 @@ const SingleRoom = () => {
           </div>
           <div className='room__features-container'>
             <div className='room__btn-wrapper'>
-              <Button type='primary' className='btn-checkin'>
-                Check in
-              </Button>
-              <Button type='primary' className='btn-checkout'>
-                Check out
-              </Button>
+              {room?.isCheckedIn ? (
+                <CheckInBtn roomId={roomId ? roomId : ''} disabled={true} />
+              ) : (
+                <CheckInBtn roomId={roomId ? roomId : ''} disabled={false} />
+              )}
+              {room?.isCheckedIn ? (
+                <CheckOutBtn roomId={roomId ? roomId : ''} disabled={false} />
+              ) : (
+                <CheckOutBtn roomId={roomId ? roomId : ''} disabled={true} />
+              )}
             </div>
             <div>
               <p className='room__subtitle bold-text'>Features:</p>

@@ -8,7 +8,7 @@ import type { FilterValue, SorterResult } from 'antd/es/table/interface';
 import { TableColoumns, FilterTable, IStateFromStore } from '../components/Interfaces';
 
 const MainLayout = () => {
-  const roomsFromStore = useSelector((state: IStateFromStore) => state.some.allRooms);
+  const roomsFromStore = useSelector((state: IStateFromStore) => state.accountsRooms.allRooms);
   const navigate = useNavigate();
   const [filteredInfo, setFilteredInfo] = useState<Record<string, FilterValue | null>>({});
   const [sortedInfo, setSortedInfo] = useState<SorterResult<IStateFromStore>>({});
@@ -122,7 +122,7 @@ const MainLayout = () => {
     },
     {
       title: 'Guest',
-      width: 120,
+      width: 240,
       dataIndex: 'guest',
       key: 'guest',
       filters: filterGuest,
@@ -133,7 +133,7 @@ const MainLayout = () => {
     },
     {
       title: '',
-      width: 120,
+      width: '10%',
       dataIndex: 'link',
       render: (_, record) => (
         <Button type='primary' onClick={() => onHandleNavigate(record)}>
@@ -143,7 +143,7 @@ const MainLayout = () => {
     },
   ];
 
-  const showFreeRooms = (event: any) => {
+  const showFreeRooms = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
       const newData = dataShow.filter((item) => item.guest === '');
       setDataShow(newData);
@@ -160,7 +160,7 @@ const MainLayout = () => {
           <Button type='primary' onClick={clearAll}>
             Clear all filters and sorts
           </Button>
-          <input type='checkbox' onClick={(event) => showFreeRooms(event)} />
+          <input type='checkbox' onChange={(event) => showFreeRooms(event)} />
           Free rooms only
         </Space>
         <Table columns={columns} dataSource={dataShow} onChange={onChange} />

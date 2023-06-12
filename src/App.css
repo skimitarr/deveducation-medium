@@ -10,10 +10,30 @@
 }
 
 .form__container {
-  height: 1000px;
   display: flex;
+  height: 100vh;
   align-items: center;
   justify-content: center;
+}
+
+.login__container {
+  display: flex;
+  flex-direction: column;
+}
+
+.login__title {
+  margin-bottom: 30px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+:where(.css-dev-only-do-not-override-k7429z).ant-col-8 {
+  flex: 0 0 15%;
+}
+
+:where(.css-dev-only-do-not-override-k7429z).ant-col-offset-8 {
+  -webkit-margin-start: 0;
+          margin-inline-start: 0;
 }
 
 .header__container {
@@ -71,48 +91,46 @@
   margin-bottom: 40px;
 }
 
-.link__home {
-  margin: 8px 0;
-}
-
-.room__data-container {
-  margin-left: 25px;
-}
-
-.room__title {
-  margin-bottom: 16px;
-  font-size: 32px;
-  font-weight: bold;
-  text-decoration: underline;
-}
-
-.room__text {
-  margin-bottom: 16px;
-  font-size: 18px;
-}
-
-.bold-text {
-  font-weight: bold;
-}
-
-.room__btn-wrapper {
-  margin-bottom: 16px;
-}
-
-.room__btn-wrapper {
-  display: flex;
-  justify-content: flex-end;
+.btn-login {
+  transform: translateX(220px);
+  padding: 0 40px;
+  border-radius: 0;
 }
 
 .btn-checkin {
   margin-right: 25px;
 }
 
+.btn-m8 {
+  margin: 8px 0;
+}
+
+.bold-text {
+  font-weight: bold;
+}
+
+.room__data-container {
+  margin-left: 25px;
+}
+.room__title {
+  margin-bottom: 16px;
+  font-size: 32px;
+  font-weight: bold;
+  text-decoration: underline;
+}
+.room__text {
+  margin-bottom: 16px;
+  font-size: 18px;
+}
+.room__btn-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+}
 .room__subtitle {
   margin-bottom: 16px;
   font-size: 20px;
 }
-
 .room__description {
   margin-right: 10px;
   font-size: 18px;
@@ -121,4 +139,8 @@
 
 .mr-10 {
   margin-right: 10px;
+}
+
+:where(.css-dev-only-do-not-override-k7429z).ant-table-wrapper .ant-table-pagination-right {
+  justify-content: center;
 }/*# sourceMappingURL=App.css.map */

@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { ISomeSliceState } from '../components/Interfaces';
+import { IAccountsRoomsSliceState } from '../components/Interfaces';
 
-const someSlice = createSlice({
+const accountsRoomsSlice = createSlice({
   name: 'accounts&rooms',
   initialState: {
     allAccounts: {},
     allRooms: [],
-  } as ISomeSliceState,
+  } as IAccountsRoomsSliceState,
   reducers: {
     getAccounts(state, action) {
       state.allAccounts = action.payload;
@@ -17,5 +17,5 @@ const someSlice = createSlice({
   },
 });
 
-export const { getAccounts, getRooms } = someSlice.actions;
-export default someSlice.reducer;
+export const { getAccounts, getRooms } = accountsRoomsSlice.actions;
+export default accountsRoomsSlice.reducer;

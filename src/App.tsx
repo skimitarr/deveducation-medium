@@ -2,7 +2,6 @@ import './App.css';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Dispatch } from '@reduxjs/toolkit';
 
 import { IStateFromStore } from './components/Interfaces';
 import { getRoomsAction } from './store/sagas';
@@ -14,8 +13,8 @@ import NotFound from './pages/NotFound';
 
 function App() {
   const navigate = useNavigate();
-  const dispatch = useDispatch<Dispatch<any>>();
-  const roomsFromStore = useSelector((state: IStateFromStore) => state.some.allRooms);
+  const dispatch = useDispatch();
+  const roomsFromStore = useSelector((state: IStateFromStore) => state.accountsRooms.allRooms);
 
   useEffect(() => {
     if (!localStorage.user && !sessionStorage.user) {

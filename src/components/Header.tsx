@@ -6,7 +6,9 @@ import { IStateFromStore } from './Interfaces';
 import logo from '../img/logo.png';
 
 function Header() {
-  const accountsFromStore = useSelector((state: IStateFromStore) => state.some.allAccounts);
+  const accountsFromStore = useSelector(
+    (state: IStateFromStore) => state.accountsRooms.allAccounts
+  );
   const [isDataDeleted, setIsDataDeleted] = useState(false);
 
   useEffect(() => {
@@ -41,7 +43,7 @@ function Header() {
 
   const handleLogout = () => {
     if (localStorage.user) {
-      localStorage.user.removeItem('user');
+      localStorage.removeItem('user');
     }
     if (sessionStorage.user) {
       sessionStorage.removeItem('user');

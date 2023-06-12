@@ -1,8 +1,7 @@
 export type IStateFromStore = {
-  some: {
+  accountsRooms: {
     allAccounts: Record<string, IAccount>;
     allRooms: IRoom[];
-    // isUser: boolean;
   };
 };
 
@@ -19,7 +18,7 @@ export type IAccount = {
 type IAccounts = Record<string, IAccount>;
 
 export type IRoom = {
-  checkInDate: string;
+  checkInDate: string | null;
   description: string;
   features: string[];
   gallery: string[];
@@ -32,20 +31,10 @@ export type IRoom = {
   type: string;
 };
 
-export type ISomeSliceState = {
+export type IAccountsRoomsSliceState = {
   allAccounts: IAccounts;
   allRooms: IRoom[];
-  // userData: { username: string; password: string };
-  // isUser: boolean;
 };
-
-// export type IPropRooms = {
-//   rooms: IRoom[];
-// };
-
-// export type IPropAccounts = {
-//   accounts: IAccounts;
-// };
 
 export type IFormValues = {
   username: string;
